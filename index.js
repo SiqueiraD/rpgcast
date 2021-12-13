@@ -1,7 +1,8 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
-const { Pool } = require('pg');
+const { Pool } = require('pg')
+const bodyParser = require('body-parser')
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -9,10 +10,17 @@ const pool = new Pool({
   }
 });
 
+// create application/json parser
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 express()
     //.use(express.static(path.join(__dirname, 'public'))) arquivos estáticos 
     .set('views', path.join(__dirname, 'views'))
     .set('view engine', 'ejs')
+    .post('*', urlencodedParser)
     .get('/', (req, res) => res.render('index'))
     .get('/db', async (req, res) => {
         try {
