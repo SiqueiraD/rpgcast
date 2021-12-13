@@ -24,7 +24,7 @@ express()
         } catch (err) {
           console.error(err);
           //res.send("Error " + err);
-          res.render('pages/db', results );
+          res.render('pages/db' );
         }
       })
       .post('/db', async (req, res) => {
