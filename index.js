@@ -23,7 +23,8 @@ express()
           client.release();
         } catch (err) {
           console.error(err);
-          res.send("Error " + err);
+          //res.send("Error " + err);
+          res.render('pages/db', results );
         }
       })
       .post('/db', async (req, res) => {

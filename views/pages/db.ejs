@@ -16,6 +16,7 @@
 </form>
 
 
+<% if (results) {%>
 <h2>Database Results</h2>
 
 <ul>
@@ -23,6 +24,7 @@
         <li><%= r.id %> - <%= r.name %></li>
     <% }); %>
 </ul>
+<% } %> 
 
 </div>
 
