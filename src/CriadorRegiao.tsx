@@ -1,7 +1,9 @@
-import { LatLng, Marker, Polygon } from "leaflet";
+import Leaflet from 'leaflet'
+import { LatLng, LeafletEvent, LeafletEventHandlerFn, Marker, Polygon } from "leaflet";
 import { useMapEvents } from "react-leaflet";
 
 function CriadorDeRegiao() {
+  console.log('CriadorDeRegiao')
   let points: LatLng[] = [];
   let layers_mark: Marker[] = [];
   let i_points = 0;
@@ -10,19 +12,22 @@ function CriadorDeRegiao() {
   // const [emps, setEmps] = useState(points);
   const map = useMapEvents({
     click: (e: { originalEvent: { defaultPrevented: any, path?: HTMLCollection }; latlng: LatLng; }) => {
-      //!e.originalEvent.defaultPrevented || 
-      if (!e.originalEvent.defaultPrevented &&
-        e.originalEvent.path && !Array.from(e.originalEvent.path).some
-          ((x) =>
-            x.className &&
-            typeof (x.className) == typeof ("") && x.className.includes('leaflet-control')
+      if (
+        !e.originalEvent.defaultPrevented &&
+        e.originalEvent.path &&
+        !Array.from(e.originalEvent.path)
+          .some(
+            (x) =>
+              x.className &&
+              typeof (x.className) == typeof ("") &&
+              x.className.includes('leaflet-control')
           )
       ) {
         layers_mark[i_points] = new Marker(e.latlng);
         points[i_points] = e.latlng;
         //Click em algum ponteiro do mapa
         layers_mark[i_points].on('click', () => {
-          layers_polygon[i_polygons] = new Polygon(points, { pane: "plano-fundo" });
+          layers_polygon[i_polygons] = new Polygon(points);
           console.log(points);
           //Click dentro da regiaoi
           layers_polygon[i_polygons].on('click', (e: any) => {
@@ -41,6 +46,7 @@ function CriadorDeRegiao() {
       }
     }
   })
+
   return null;
 }
 

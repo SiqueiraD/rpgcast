@@ -8,6 +8,7 @@ import TabuleiroQuimica from "./examples/TabuleiroQuimica";
 
 
 function EscolhePlanoFundo(showView: string) {
+    console.log('escolhePlanoFundo: '+showView)
     const map = useMap();
     map.setMaxZoom(8)
     map.setZoom(2)
@@ -32,6 +33,7 @@ function RenderPlanoFundo(
     prop: {
         showView: string,
     }) {
+    console.log('RenderPlanoFundo')
     return (<>
         {EscolhePlanoFundo(prop.showView)}
     </>)

@@ -4,6 +4,7 @@ import { useMap } from "react-leaflet";
 
 
 function ButtonTopRightControl(prop: { showView: string, setShowView: any}) {
+  console.log('ButtonTopRightControl')
     const map = useMap();
     const [showSection, setShowSection] = useState("leaflet-control-layers leaflet-control")
   

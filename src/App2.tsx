@@ -1,18 +1,26 @@
 import './App.css';
-import { MapContainer, Popup, TileLayer, useMapEvents, ImageOverlay, useMapEvent, useMap, LayersControl, Pane, Marker as MarkerReact } from 'react-leaflet'
-import { LatLng, Polygon, Layer, Marker, LayerGroup, Map, Point, CRS, Control, Icon } from 'leaflet';
-import { useState, useEffect } from 'react';
+import { MapContainer, Pane, useMap } from 'react-leaflet'
+import { useState } from 'react';
 import RenderPlanoFundo from './RenderPlanoFundo';
-import ButtonTopRightControl from './ButtonTopRightControl';
+import ButtonTopRightControl from './examples/ButtonTopRightControl';
 import CriadorDeRegiao from './CriadorRegiao';
-
-
-
+import Leaflet from 'leaflet';
+import CursorControl from './components/CursorControl/CursorControl';
+import React from 'react';
+import { eventNames } from 'process';
 
 function App2() {
+  console.log('App2 - Iniciando..')
   const [showView, setShowView] = useState('MapaComum')
-  const [zoomView, setzoomView] = useState(15)
-  
+  const [zoomView, setZoomView] = useState(15)
+  const [dragging, setDragging] = useState(true)
+  const [zoomControl, setZoomControl] = useState(true)
+  const [zoomEnabled, setZoomEnabled] = useState(true)
+  const [moveEnabled, setMoveEnabled] = useState(true)
+  const [boxZoom, setBoxZoom] = useState(true)
+  const [doubleClickZoom, setDoubleClickZoom] = useState(true)
+
+
   function setView(newView: string) {
     if (showView != newView)
       setTimeout(() => {
@@ -20,12 +28,17 @@ function App2() {
           setShowView(newView)
       }, 20);
   }
+
+
   return (
-    <MapContainer minZoom={-1} zoomSnap={0.5}>
+    <MapContainer id="mapa"
+      minZoom={-1} zoomSnap={0.5} doubleClickZoom={doubleClickZoom}
+    >
       <Pane name={'plano-fundo'} style={{ zIndex: 1 }} />
-      <CriadorDeRegiao />
-      <RenderPlanoFundo showView={showView}/>
-      <ButtonTopRightControl  showView={showView} setShowView={setView} />
+      <CriadorDeRegiao/>
+      <RenderPlanoFundo showView={showView} />
+      <ButtonTopRightControl showView={showView} setShowView={setView} />
+      <CursorControl />
     </MapContainer>
   )
 }

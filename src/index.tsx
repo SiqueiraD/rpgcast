@@ -8,11 +8,12 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+console.log('Index')
 root.render(
-  <React.StrictMode>
+  <React.Fragment>
     {/* <App /> */}
     <App2 />
-  </React.StrictMode>
+  </React.Fragment>
 );
 
 // If you want to start measuring performance in your app, pass a function

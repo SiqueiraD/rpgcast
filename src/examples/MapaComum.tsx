@@ -1,5 +1,25 @@
 import { LatLng, Polygon } from "leaflet";
 import { TileLayer, useMap } from "react-leaflet";
+import Parse from 'parse';
+import Config from './../Config'
+import PopUp from '../components/UI/PopUp'
+
+async function testParse() {
+    return PopUp
+//   Parse.initialize(Config.PARSE_APPLICATION_ID, Config.PARSE_JAVASCRIPT_KEY);
+//   Parse.serverURL = Config.PARSE_HOST_URL;
+
+//   const myNewObject = new Parse.Object('Mapa');
+//   myNewObject.set('jsonInicial', { foo: 'bar' });
+//   myNewObject.set('createdBy', Parse.User.current());
+//   try {
+//     //const result = await myNewObject.save();
+//     //// Access the Parse Object attributes using the .GET method
+//     //console.log('Mapa created', result);
+//   } catch (error) {
+//     console.error('Error while creating Mapa: ', error);
+//   }
+}
 
 
 let predef_polygon: Polygon[] = [];
@@ -11,8 +31,10 @@ function Gragoata() {
         var j1 = JSON.parse(grags);
         predef_polygon[i_predef_polygons] = new Polygon(j1, {
             color: 'purple',
+            
         });
         //var lasda =pol.getPane('plano-fundo')
+        predef_polygon[i_predef_polygons].on('click',testParse);
         predef_polygon[i_predef_polygons].addTo(map);
         i_predef_polygons++;
     }
@@ -20,13 +42,14 @@ function Gragoata() {
 }
 
 function MapaComum() {
+    console.log('MapaComum')
     const map = useMap();
     map.setView(new LatLng(-22.90309921448796, -43.12773227691651), 15)
     //setCenterPos(new LatLng(-22.90309921448796, -43.12773227691651))
     return (
         <>
             <TileLayer
-                pane='plano-fundo'
+                //pane='plano-fundo'
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 maxNativeZoom={19}
