@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+img.buttonCursor:hover{
+  filter: invert(85%);
+  background-color:white
+}

@@ -1,8 +1,7 @@
 import { LatLng, Polygon } from "leaflet";
 import { TileLayer, useMap } from "react-leaflet";
-import Parse from 'parse';
-import Config from './../Config'
 import PopUp from '../components/UI/PopUp'
+
 
 async function testParse() {
     return PopUp
@@ -20,7 +19,6 @@ async function testParse() {
 //     console.error('Error while creating Mapa: ', error);
 //   }
 }
-
 
 let predef_polygon: Polygon[] = [];
 let i_predef_polygons = 0;
@@ -40,6 +38,7 @@ function Gragoata() {
     }
     return null
 }
+
 
 function MapaComum() {
     console.log('MapaComum')
