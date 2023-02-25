@@ -20,6 +20,10 @@ export default function Home() {
             Get started by editing&nbsp;
             <code className={styles.code}>pages/index.tsx</code>
           </p>
+          <p>
+            Entre em&nbsp;
+            <code className={styles.code}>userLogin ou api/hello</code>
+          </p>
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
